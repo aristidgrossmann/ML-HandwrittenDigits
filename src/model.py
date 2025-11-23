@@ -16,4 +16,4 @@ class ImageClassifier(nn.Module):
         )
 
     def forward(self, x):
-        return self. Model(x)
+        return self.model(x)
