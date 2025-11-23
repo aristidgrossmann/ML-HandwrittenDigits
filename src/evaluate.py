@@ -6,7 +6,7 @@ from torchvision.transforms import ToTensor
 from train import ImageClassifier  # Assuming ImageClassifier is defined in train.py
 import matplotlib.pyplot as plt
 
-def predict_image(image_path, model_path="model_state.pt", device="mps"):
+def predict_image(image_path, model_path="model_state.pt", device="cpu"):
     # Load model
     model = ImageClassifier().to(device)
     model.load_state_dict(torch.load(model_path, weights_only=True))
