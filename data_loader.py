@@ -1,19 +1,7 @@
-import torch
-from torch import nn
+from torchvision import datasets
+from torchvision.transforms import ToTensor
+from torch.utils.data import DataLoader
 
-class ImageClassifier(nn.Module):
-    def __init__(self):
-        super().__init__()
-        self.model = nn.Sequential(
-            nn.Conv2d(1, 32, kernel_size=3),  # Output: 26x26
-            nn.ReLU(),
-            nn.Conv2d(32, 64, kernel_size=3), # Output: 24x24
-            nn.ReLU(),
-            nn.Conv2d(64, 64, kernel_size=3), # Output: 22x22
-            nn.ReLU(),
-            nn.Flatten(),
-            nn.Linear(64 * 22 * 22, 10)       # Fully connected layer for 10 classes
-        )
-
-    def forward(self, x):
-        return self.Model(x)
+def get_data_loader(batch_size=32):
+    train_data = datasets.MNIST(root="data", train=True, download=True, transform=ToTensor())
+    return DataLoader(train_data, batch_size=batch_size, shuffle=True)
